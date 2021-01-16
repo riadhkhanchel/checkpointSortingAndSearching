@@ -1,0 +1,44 @@
+FUNCTION get_position(n, tab : ARRAY_OF INTEGER) : INTEGER
+VAR
+    pos : INTEGER;
+BEGIN
+    j := 0;
+    WHILE (j < tab.length-1 ) DO
+        IF (tab[j] > n) THEN
+             pos = j; // this is the position of the number to be inserted 
+        END_IF
+        j := j+1; // update index
+    END_WHILE
+    return pos;
+END
+
+
+// A function to insert an element in an array
+// the function is called by reference to modify the original array
+FUNCTION insertItem (n, pos, Var ArrayA ) : Array
+VAR
+    temp: INTEGER;
+    j : INTEGER := ArrayA.length;
+
+BEGIN
+   WHILE (j > pos) DO
+       arrayA[j]= arrayA[j-1];
+       j = j -1;
+          END_WHILE
+    arrayA[pos]= n;
+END
+/////////////////////////////////////////////////////////////////
+////////////// The ALGOTIHM Insertion_sort //////////////////////
+ALGORITHM Insertion_sort 
+VAR
+    sortedArray : ARRAY_OF INTEGER[5];
+    pos : INTEGER;
+    n :INTEGER;
+    
+BEGIN
+// a new card ( a new number (card) is provided) 
+    read (n); // the card number
+    pos = get_position (n, sortedArray);
+    sortedArray = insertItem (n, pos, sortedArray);
+
+END
